@@ -15,14 +15,22 @@ int main() {
 
   } while (a <= 0 || b <= 0 || c <= 0);
 
-  if ((a > b) && (a > c)) {
+  // if ((a < b) && (a < c)) {
+  //   printf("Buy the first product, it is the cheapest: $ %.2f.\n", a);
+  // } else if ((b < a) && (b < c)) {
+  //   printf("Buy the second product, it is the cheapest: $ %.2f.\n", b);
+  // } else if ((c < a) && (c < b)) {
+  //   printf("Buy the third product, it is the cheapest: $ %.2f.\n", c);
+  // } else {
+  //   printf("The three products have the same price. You can buy any of them.");
+  // }
+  
+  if (a < b) {
     printf("Buy the first product, it is the cheapest: $ %.2f.\n", a);
-  } else if ((b > a) && (b > c)) {
+  } else if (b < c) {
     printf("Buy the second product, it is the cheapest: $ %.2f.\n", b);
-  } else if ((c > a) && (c > b)) {
-    printf("Buy the third product, it is the cheapest: $ %.2f.\n", c);
   } else {
-    printf("The three products have the same price. You can buy any of them.");
+    printf("Buy the third product, it is the cheapest: $ %.2f.\n", c);
   }
   
   return 0;
