@@ -14,7 +14,7 @@ int main() {
   Prod p[10];
   int i, maior_qtd_estoque = 0, maior_lucro = 0;
 
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < 10; i++) {
     do
     {
       printf("Digite um código de três dígitos entre 100 e 999 para o %dº produto: ", i+1);
