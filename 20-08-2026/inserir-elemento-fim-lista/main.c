@@ -21,16 +21,28 @@ Lista* criarLista() {
   return aux;
 }
 
-No* aux_insere(No *antigo, int v) {
-  No *aux;
-  aux = (No*) malloc(sizeof(No));
-  aux->info = v;
-  aux->prox = antigo;
-  return aux;
+No* aux_insere_fim(No *antigo, int v) {
+  No *novo, *aux;
+  novo = (No*) malloc(sizeof(No));
+  novo->info = v;
+  novo->prox = NULL;
+
+  if (antigo == NULL) {
+    return novo;
+  }
+
+  aux = antigo;
+
+  while(aux->prox != NULL) {
+    aux=aux->prox;
+  }
+
+  aux->prox = novo;
+  return antigo;
 }
 
-void insereL_inicio(Lista *velho, int valor) {
-  velho->inicio = aux_insere(velho->inicio, valor);
+void insereL_fim(Lista *velho, int valor) {
+  velho->inicio = aux_insere_fim(velho->inicio, valor);
 }
 
 void imprimir_lista(Lista* l1) {
@@ -44,7 +56,7 @@ void imprimir_lista(Lista* l1) {
   printf("\n");
 }
 
-void remover_primeiro_item(Lista* l1) {
+void remover_ultimo_item(Lista* l1) {
   No *aux;
   No *prev_aux;
   aux=l1->inicio;
@@ -68,16 +80,27 @@ void remover_primeiro_item(Lista* l1) {
   free(aux);
 }
 
+void remover_primeiro_item_inserido(Lista *l1) {
+  No *aux;
+  No *prox_aux;
+  aux=l1->inicio;
+  if (l1 != NULL) {
+    l1->inicio = aux->prox;
+    prox_aux = aux;
+    free(prox_aux);
+  } else exit(0);
+}
+
 int main() {
   Lista *l;
   l = inicializarLista();
   l = criarLista();
-  insereL_inicio(l, 11);
-  insereL_inicio(l, 10);
-  insereL_inicio(l, 9);
+  insereL_fim(l, 11);
+  insereL_fim(l, 10);
+  insereL_fim(l, 9);
   imprimir_lista(l);
-  remover_primeiro_item(l);
-  imprimir_lista(l);
+  // remover_primeiro_item_inserido(l);
+  // imprimir_lista(l);
 
   return 0;
 }
