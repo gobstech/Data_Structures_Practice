@@ -12,8 +12,10 @@ int main () {
   push(p, 5);
   imprime(p);
   printf("\n%d\n", contar_elementos_pilha(p));
-  inverter_pilha(p, p->Topo);
+  p->Topo = inverter_pilha(p);
   imprime(p);
-
+  int pesquisa = apaga_no(p, 3);
+  printf("\n%d\n", pesquisa);
+  imprime(p);
   return 0;
 }

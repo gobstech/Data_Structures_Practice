@@ -125,11 +125,39 @@ int contar_elementos_pilha(Pilha *p) {
     return quant;
 }
 
-void inverter_pilha(Pilha* p, No *aux) {
-    if (aux != NULL) {
-        inverter_pilha(p, aux->prox);
+No* inverter_pilha(Pilha *p) {
+    Pilha *novo = CriaPilha();
+    while(p->Topo != NULL) {
+        push(novo, p->Topo->info);
+        pop(p);
     }
-    p->Topo = aux->prox;
+    return novo->Topo;
+}
+
+int apaga_no(Pilha *p, int pesquisa) {
+    int encontrado, found = 0;
+    Pilha *novo = CriaPilha();
+    while (p->Topo != NULL) {
+        if (p->Topo->info == pesquisa) {
+            encontrado = pop(p);
+            found = 1;
+            break;
+        }
+        push(novo, p->Topo->info);
+        pop(p);
+    }
+
+    while (novo->Topo != NULL) {
+        push(p, novo->Topo->info);
+        pop(novo);
+    }
+
+    if (found) {
+        return encontrado;
+    } else {
+        printf("Número não encontrado.");
+        exit(1);
+    }
 }
 
 #endif // PILHA_H_INCLUDED
